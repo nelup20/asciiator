@@ -2,6 +2,7 @@ from __future__ import annotations
 from enum import Enum, auto
 from os.path import abspath
 
+
 class File:
     name = ""
     relative_path = ""

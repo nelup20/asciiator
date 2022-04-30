@@ -9,6 +9,7 @@ options: Options = {
     "input": []
 }
 
+
 def init():
     if len(sys.argv) > 1:
         for arg in enumerate(sys.argv):
@@ -28,6 +29,7 @@ def init():
     else:
         print("No arguments provided. Use -h for help.")
 
+
 if __name__ == "__main__":
     init()
 
@@ -39,5 +41,3 @@ if __name__ == "__main__":
                 transform_mp4(file)
             case _:
                 print(f"Invalid file type for file: {file.relative_path}")
-
-
