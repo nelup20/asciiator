@@ -5,6 +5,7 @@ from os.path import abspath
 
 class File:
     name = ""
+    extension = ""
     relative_path = ""
     absolute_path = ""
     type = None
@@ -12,20 +13,26 @@ class File:
     def __init__(self, relative_path: str) -> None:
         self.relative_path = relative_path
         self.absolute_path = abspath(relative_path)
-        self.name = relative_path.split("/")[-1]
-        self.type = FileType.get_file_type(self.name)
 
-    def get_data(self):
-        with open(self.absolute_path, "rb") as file:
-            return bytearray(file.read())
+        name = relative_path.split("/")[-1]
+        self.extension = name.split(".")[-1]
+        self.name = name.removesuffix(f".{self.extension}")
+
+        self.type = FileType.get_file_type(self.get_name_with_extension())
 
     @classmethod
     def is_input_file(cls, arg: str) -> bool:
-        return True if ".jpg" in arg or ".jpeg" in arg or ".mp4" in arg else False
+        return arg.endswith((".jpg", ".jpeg", ".mp4"))
 
-    # TODO: create as self.name + _asciiator.jpg
-    def create_new_file(self, transformed_data):
-        with open(abspath(f"./new_test_asciiator.jpg"), "wb") as new_file:
+    def get_data(self) -> bytearray:
+        with open(self.absolute_path, "rb") as file:
+            return bytearray(file.read())
+
+    def get_name_with_extension(self) -> str:
+        return f"{self.name}.{self.extension}"
+
+    def create_new_file(self, transformed_data) -> None:
+        with open(abspath(f"./{self.name}_asciiator.{self.extension}"), "wb") as new_file:
             new_file.write(transformed_data)
 
     def __str__(self) -> str:
@@ -39,10 +46,10 @@ class FileType(Enum):
 
     @classmethod
     def get_file_type(cls, input_file: str) -> FileType:
-        if ".jpg" in input_file or ".jpeg" in input_file:
+        if input_file.endswith((".jpg", ".jpeg")):
             return cls.Image
 
-        if ".mp4" in input_file:
+        if input_file.endswith((".mp4", ".avi")):
             return cls.Video
 
         return cls.Other
