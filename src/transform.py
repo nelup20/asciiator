@@ -1,11 +1,15 @@
+from random import randint
+
+
 # TODO: actual transformation
 def transform_jpg(file):
-    file_data = file.get_data()
-    for i, byte in enumerate(file_data):
-        if byte == 146:
-            file_data[i] = 0
+    new_circle_color = (randint(0, 255), randint(0, 255), randint(0, 255))
 
-    file.create_new_file(file_data)
+    image_pixels = file.get_data()
+    new_image_pixels = list(
+        map(lambda pixel: (0, 0, 0) if pixel == (255, 255, 255) else new_circle_color, image_pixels))
+
+    file.create_new_file(new_image_pixels)
 
 
 def transform_mp4(file):
