@@ -1,6 +1,7 @@
 from __future__ import annotations
 from enum import Enum, auto
 from os.path import abspath
+from PIL import Image
 
 
 class File:
@@ -9,6 +10,7 @@ class File:
     relative_path = ""
     absolute_path = ""
     type = None
+    opened_file = None
 
     def __init__(self, relative_path: str) -> None:
         self.relative_path = relative_path
@@ -20,20 +22,23 @@ class File:
 
         self.type = FileType.get_file_type(self.get_name_with_extension())
 
+        if self.type is FileType.Image:
+            self.opened_file = Image.open(self.absolute_path)
+
     @classmethod
     def is_input_file(cls, arg: str) -> bool:
         return arg.endswith((".jpg", ".jpeg", ".mp4"))
 
     def get_data(self) -> bytearray:
-        with open(self.absolute_path, "rb") as file:
-            return bytearray(file.read())
+        return self.opened_file.getdata()
 
     def get_name_with_extension(self) -> str:
         return f"{self.name}.{self.extension}"
 
     def create_new_file(self, transformed_data) -> None:
-        with open(abspath(f"./{self.name}_asciiator.{self.extension}"), "wb") as new_file:
-            new_file.write(transformed_data)
+        new_file = Image.new(self.opened_file.mode, self.opened_file.size)
+        new_file.putdata(transformed_data)
+        new_file.save(abspath(f"./{self.name}_asciiator.{self.extension}"))
 
     def __str__(self) -> str:
         return f'File @ {hex(id(self))}: name = {self.name}, path = {self.relative_path}, type = {self.type}'

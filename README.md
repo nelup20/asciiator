@@ -18,6 +18,7 @@ Supported input/output formats:
 ## Requirements
 
 - Python 3.10+
+- Pillow
 
 ## Flags
 
