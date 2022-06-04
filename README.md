@@ -24,7 +24,6 @@ Supported input/output formats:
 
 |Flag|Description|
 |:---|:----------|
-|-i  |Modify the file **
-inplace**. The original file will be transformed to ASCII and no new output file will be generated.|
+|-i  |Modify the file **inplace**. The original file will be transformed to ASCII and no new output file will be generated.|
 |-h  | Display the help documentation                                                                                      |
-|--reduction=x|Reduce the output by a factor of x. Example: --reduction=2 to get half the amount of pixels in ASCII 
+|--reduction=x| Reduce the output by a factor of x. Example: --reduction=2 to get half the amount of pixels in ASCII                
