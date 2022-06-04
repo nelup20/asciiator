@@ -5,3 +5,4 @@ from file import File
 class Options(TypedDict):
     inplace: bool
     input: List[File]
+    reduction_factor: int

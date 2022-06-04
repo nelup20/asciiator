@@ -6,7 +6,8 @@ from transform import transform_jpg, transform_mp4
 
 options: Options = {
     "inplace": False,
-    "input": []
+    "input": [],
+    "reduction_factor": 1
 }
 
 
@@ -20,7 +21,11 @@ def init():
                 options["input"].append(File(arg[1]))
                 continue
 
-            match arg:
+            if "--reduction=" in arg[1]:
+                options["reduction_factor"] = int(arg[1].split("=")[1])
+                continue
+
+            match arg[1]:
                 case "-h":
                     print("TODO. Sorry can't help ya right now.")
                 case _:
@@ -36,7 +41,8 @@ if __name__ == "__main__":
     for file in options["input"]:
         match file.type:
             case FileType.Image:
-                transform_jpg(file)
+                transformed_data = transform_jpg(file, options['reduction_factor'])
+                File.create_new_file(transformed_data, f"./{file.name}_asciiator.txt")
             case FileType.Video:
                 transform_mp4(file)
             case _:
