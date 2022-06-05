@@ -22,12 +22,13 @@ class File:
 
         self.type = FileType.get_file_type(self.get_name_with_extension())
 
+        # TODO: split/subclass (ImageFile and VideoFile)
         if self.type is FileType.Image:
             self.opened_file = Image.open(self.absolute_path).convert("L")
 
     @classmethod
     def is_input_file(cls, arg: str) -> bool:
-        return arg.endswith((".jpg", ".jpeg", ".mp4"))
+        return arg.endswith((".jpg", ".jpeg", ".png", ".mp4", "avi"))
 
     @classmethod
     def create_new_file(cls, data, path) -> None:
@@ -57,7 +58,7 @@ class FileType(Enum):
 
     @classmethod
     def get_file_type(cls, input_file: str) -> FileType:
-        if input_file.endswith((".jpg", ".jpeg")):
+        if input_file.endswith((".jpg", ".jpeg", ".png")):
             return cls.Image
 
         if input_file.endswith((".mp4", ".avi")):

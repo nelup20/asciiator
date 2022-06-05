@@ -33,7 +33,7 @@ ASCII_MAPPING = {
 
 # TODO: This reduction_factor essentially just skips lines/pixels, so I'm assuming it's not ideal. Maybe take the
 #  average value of the surrounding/grouped pixels instead?
-def transform_jpg(file: File, reduction_factor: int):
+def transform_image(file: File, reduction_factor: int):
     image_data = file.get_data()
 
     ascii_data = []

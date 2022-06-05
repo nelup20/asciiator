@@ -2,7 +2,7 @@ import sys
 
 from file import File, FileType
 from options import Options
-from transform import transform_jpg, transform_mp4
+from transform import transform_image, transform_mp4
 
 options: Options = {
     "inplace": False,
@@ -41,7 +41,7 @@ if __name__ == "__main__":
     for file in options["input"]:
         match file.type:
             case FileType.Image:
-                transformed_data = transform_jpg(file, options['reduction_factor'])
+                transformed_data = transform_image(file, options['reduction_factor'])
                 File.create_new_file(transformed_data, f"./{file.name}_asciiator.txt")
             case FileType.Video:
                 transform_mp4(file)
