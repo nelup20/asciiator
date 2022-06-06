@@ -1,6 +1,8 @@
 from math import floor
 
-from src.file import File
+from src.file.file import File
+from src.file.image_file import ImageFile
+from src.file.video_file import VideoFile
 
 ASCII_MAPPING_INTERVAL = 11
 
@@ -33,7 +35,7 @@ ASCII_MAPPING = {
 
 # TODO: This reduction_factor essentially just skips lines/pixels, so I'm assuming it's not ideal. Maybe take the
 #  average value of the surrounding/grouped pixels instead?
-def transform_image(file: File, reduction_factor: int):
+def transform_image(file: ImageFile, reduction_factor: int) -> str:
     image_data = file.get_data()
 
     ascii_data = []
@@ -52,5 +54,5 @@ def transform_image(file: File, reduction_factor: int):
     return "".join(ascii_data)
 
 
-def transform_mp4(file):
+def transform_video(file: VideoFile) -> None:
     print(file.get_data())

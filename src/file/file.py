@@ -1,7 +1,7 @@
 from __future__ import annotations
+
 from enum import Enum, auto
 from os.path import abspath
-from PIL import Image
 
 
 class File:
@@ -22,10 +22,6 @@ class File:
 
         self.type = FileType.get_file_type(self.get_name_with_extension())
 
-        # TODO: split/subclass (ImageFile and VideoFile)
-        if self.type is FileType.Image:
-            self.opened_file = Image.open(self.absolute_path).convert("L")
-
     @classmethod
     def is_input_file(cls, arg: str) -> bool:
         return arg.endswith((".jpg", ".jpeg", ".png", ".mp4", "avi"))
@@ -35,17 +31,8 @@ class File:
         with open(abspath(path), "w") as new_file:
             new_file.write(data)
 
-    def get_data(self) -> bytearray:
-        return self.opened_file.getdata()
-
     def get_name_with_extension(self) -> str:
         return f"{self.name}.{self.extension}"
-
-    def get_width(self) -> int:
-        return self.opened_file.width
-
-    def get_height(self) -> int:
-        return self.opened_file.height
 
     def __str__(self) -> str:
         return f'File @ {hex(id(self))}: name = {self.name}, path = {self.relative_path}, type = {self.type}'
