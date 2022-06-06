@@ -20,10 +20,12 @@ Supported input/output formats:
 - Python 3.10+
 - Pillow
 
-## Flags
+## Optional flags
 
-|Flag|Description|
-|:---|:----------|
-|-i  |Modify the file **inplace**. The original file will be transformed to ASCII and no new output file will be generated.|
-|-h  | Display the help documentation                                                                                      |
-|--reduction=x| Reduce the output by a factor of x. Example: --reduction=2 to get half the amount of pixels in ASCII                
+| Flag                | Description                                                                                                                                                                                                                                |
+|:--------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| -i                  | Modify the file **inplace**. The original file will be transformed to ASCII and no new output file will be generated.                                                                                                                      |
+| -h                  | Display the help documentation                                                                                                                                                                                                             |
+| --reduction=x       | Reduce the output by a factor of x (int). Default value: 1 (no reduction). Example: --reduction=2 to get half the amount of pixels in ASCII                                                                                                |
+| --inverted_colors=x | Invert the colors for the background and text. By default (--inverted_colors=false), the background color is white (255) and the text color is black (0). If set to "true", the background will be black and the text color will be white. |
+| --output_path=x     | Specify the output path where all new files will be created. By default it's the current directory.                                                                                                                                        |
