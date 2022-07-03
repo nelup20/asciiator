@@ -12,8 +12,8 @@ class ImageFile(File):
 
         self.opened_file = Image.open(self.absolute_path).convert("L")
 
-    @classmethod
-    def create_new_image_from_string(cls, data: str, size: tuple[int, int], path: str, inverted_colors: bool) -> None:
+    @staticmethod
+    def create_new_image_from_string(data: str, size: tuple[int, int], path: str, inverted_colors: bool) -> None:
         background_color = 0 if inverted_colors else 255
         text_color = 255 if inverted_colors else 0
 
