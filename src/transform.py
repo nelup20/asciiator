@@ -1,6 +1,5 @@
 from math import floor
 
-from src.file.file import File
 from src.file.image_file import ImageFile
 from src.file.video_file import VideoFile
 
