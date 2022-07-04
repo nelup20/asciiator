@@ -1,7 +1,7 @@
 from math import floor
 
-from src.file.image_file import ImageFile
-from src.file.video_file import VideoFile
+from file.image_file import ImageFile
+from file.video_file import VideoFile
 
 ASCII_MAPPING_INTERVAL = 11
 
@@ -40,10 +40,16 @@ def transform_image(file: ImageFile, reduction_factor: int) -> str:
     ascii_data = []
 
     for row in range(0, file.get_height(), reduction_factor * 2):
-        for column in range(row * file.get_width(), (row + 1) * file.get_width(), reduction_factor):
+        for column in range(
+            row * file.get_width(), (row + 1) * file.get_width(), reduction_factor
+        ):
             pixel = image_data[column]
             upper_bound = floor(pixel / ASCII_MAPPING_INTERVAL) * ASCII_MAPPING_INTERVAL
-            char = " " if upper_bound == 0 else ASCII_MAPPING[(upper_bound - ASCII_MAPPING_INTERVAL, upper_bound)]
+            char = (
+                " "
+                if upper_bound == 0
+                else ASCII_MAPPING[(upper_bound - ASCII_MAPPING_INTERVAL, upper_bound)]
+            )
 
             ascii_data.append(char)
 
