@@ -1,15 +1,16 @@
 import sys
+from typing import List
 from warnings import warn
 
-from src.file.file import File, FileType
-from src.file.image_file import ImageFile
-from src.file.video_file import VideoFile
+from file.file import File, FileType
+from file.image_file import ImageFile
+from file.video_file import VideoFile
 
 
 class Options:
     inplace = False
     text_file = False
-    input = []
+    input: List[File] = []
     reduction_factor = 1
     inverted_colors = False
     output_path = "./"
@@ -31,7 +32,9 @@ class Options:
                     elif file_type is FileType.Video:
                         self.input.append(VideoFile(file_path))
                     else:
-                        print(f"Unsupported file type provided: {file_path}. Supported types: .jpg, .png, .mp4, .avi")
+                        print(
+                            f"Unsupported file type provided: {file_path}. Supported types: .jpg, .png, .mp4, .avi"
+                        )
 
                     continue
 
@@ -41,8 +44,10 @@ class Options:
 
                 if "--output_path=" in arg[1]:
                     self.output_path = arg[1].split("=")[1]
-                    warn("Warning: if the -inplace flag is present, the original absolute path will be used and "
-                         "the custom output_path will be ignored.")
+                    warn(
+                        "Warning: if the -inplace flag is present, the original absolute path will be used and "
+                        "the custom output_path will be ignored."
+                    )
                     continue
 
                 match arg[1]:
@@ -55,7 +60,9 @@ class Options:
                     case "-inverted":
                         self.inverted_colors = True
                     case _:
-                        raise Exception(f"Argument #{arg[0]} is invalid: {arg[1]}. {self._HELP_FLAG_MESSAGE}")
+                        raise Exception(
+                            f"Argument #{arg[0]} is invalid: {arg[1]}. {self._HELP_FLAG_MESSAGE}"
+                        )
 
         else:
             raise Exception(f"No arguments provided. {self._HELP_FLAG_MESSAGE}")
