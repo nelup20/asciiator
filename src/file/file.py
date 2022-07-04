@@ -3,14 +3,16 @@ from __future__ import annotations
 from enum import Enum, auto
 from os.path import abspath
 
+from PIL.Image import Image as PillowImage
+
 
 class File:
-    name = ""
-    extension = ""
-    relative_path = ""
-    absolute_path = ""
-    type = None
-    opened_file = None
+    name: str
+    extension: str
+    relative_path: str
+    absolute_path: str
+    type: FileType
+    opened_file: PillowImage
 
     def __init__(self, relative_path: str) -> None:
         self.relative_path = relative_path
@@ -23,7 +25,7 @@ class File:
         self.type = FileType.get_file_type(self.get_name_with_extension())
 
     @classmethod
-    def is_input_file(cls, arg: str) -> bool:
+    def is_input_file(cls, arg: str) -> int:
         return arg.endswith((".jpg", ".jpeg", ".png", ".mp4", "avi"))
 
     @classmethod
@@ -35,7 +37,7 @@ class File:
         return f"{self.name}.{self.extension}"
 
     def __str__(self) -> str:
-        return f'File @ {hex(id(self))}: name = {self.name}, path = {self.relative_path}, type = {self.type}'
+        return f"File @ {hex(id(self))}: name = {self.name}, path = {self.relative_path}, type = {self.type}"
 
 
 class FileType(Enum):
