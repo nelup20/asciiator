@@ -1,9 +1,9 @@
 from os import path, makedirs
 
 from options import Options
-from src.file.file import File
-from src.file.image_file import ImageFile
-from src.file.video_file import VideoFile
+from file.file import File
+from file.image_file import ImageFile
+from file.video_file import VideoFile
 from transform import transform_image, transform_video
 
 if __name__ == "__main__":
@@ -17,17 +17,25 @@ if __name__ == "__main__":
             transformed_data = transform_image(file, options.reduction_factor)
 
             if options.text_file:
-                File.create_new_file(transformed_data, f"{options.output_path}/{file.name}_asciiator.txt")
+                File.create_new_file(
+                    transformed_data, f"{options.output_path}/{file.name}_asciiator.txt"
+                )
 
-            new_image_path = file.absolute_path if options.inplace else f"{options.output_path}/{file.name}_asciiator.{file.extension}"
+            new_image_path = (
+                file.absolute_path
+                if options.inplace
+                else f"{options.output_path}/{file.name}_asciiator.{file.extension}"
+            )
 
-            ImageFile.create_new_image_from_string(transformed_data,
-                                                   (
-                                                       int(file.get_width() * 6 / options.reduction_factor),
-                                                       int(file.get_height() * 7.5 / options.reduction_factor)
-                                                   ),
-                                                   new_image_path,
-                                                   options.inverted_colors)
+            ImageFile.create_new_image_from_string(
+                transformed_data,
+                (
+                    int(file.get_width() * 6 / options.reduction_factor),
+                    int(file.get_height() * 7.5 / options.reduction_factor),
+                ),
+                new_image_path,
+                options.inverted_colors,
+            )
 
         if isinstance(file, VideoFile):
             transform_video(file)

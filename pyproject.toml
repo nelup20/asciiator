@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "asciiator"
+version = "0.1.0"
+description = "A CLI tool to turn image and video files into ASCII art."
+authors = ["nelup20 <platon.nelu@yahoo.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.10"
+Pillow = "^9.2.0"
+
+
+[tool.poetry.dev-dependencies]
+black = "^22.6.0"
+mypy = "^0.961"
+types-Pillow = "^9.2.0"
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

@@ -19,11 +19,8 @@ Supported input/output formats:
 ## Requirements/Dependencies
 
 - Python 3.10+
-- Pillow
-- FFmpeg
-- Poetry
-- Black
-- Mypy
+- FFmpeg 4.4.1+
+- Poetry 1.0.0+
 
 ## Optional flags
 
