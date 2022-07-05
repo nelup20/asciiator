@@ -34,11 +34,11 @@ jobs:
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root
 
-    - name: Check style (reformat)
+    - name: Check style (black)
       run: poetry run black src
 
-    - name: Check types
+    - name: Check types (mypy)
       run: poetry run mypy src
 
-    - name: Test with unittest
-      run: poetry run python -m unittest discover -v test
+    - name: Run tests (pytest, pytest-cov)
+      run: poetry run pytest --cov=src test
