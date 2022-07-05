@@ -3,8 +3,6 @@ from __future__ import annotations
 from enum import Enum, auto
 from os.path import abspath
 
-from PIL.Image import Image as PillowImage
-
 
 class File:
     name: str
@@ -12,7 +10,6 @@ class File:
     relative_path: str
     absolute_path: str
     type: FileType
-    opened_file: PillowImage
 
     def __init__(self, relative_path: str) -> None:
         self.relative_path = relative_path
@@ -24,12 +21,12 @@ class File:
 
         self.type = FileType.get_file_type(self.get_name_with_extension())
 
-    @classmethod
-    def is_input_file(cls, arg: str) -> int:
+    @staticmethod
+    def is_input_file(arg: str) -> bool:
         return arg.endswith((".jpg", ".jpeg", ".png", ".mp4", "avi"))
 
-    @classmethod
-    def create_new_file(cls, data, path) -> None:
+    @staticmethod
+    def create_new_file(data, path) -> None:
         with open(abspath(path), "w") as new_file:
             new_file.write(data)
 
