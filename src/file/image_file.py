@@ -1,6 +1,8 @@
 from __future__ import annotations
-from PIL import Image, ImageFont, ImageDraw
+
+from PIL import Image, ImageDraw, ImageFont
 from PIL.Image import Image as PillowImage
+
 from .file import File
 
 
