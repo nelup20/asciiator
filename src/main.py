@@ -1,9 +1,9 @@
-from os import path, makedirs
+from os import makedirs, path
 
-from options import Options
 from file.file import File
 from file.image_file import ImageFile
 from file.video_file import VideoFile
+from options import Options
 from transform import transform_image, transform_video
 
 if __name__ == "__main__":
