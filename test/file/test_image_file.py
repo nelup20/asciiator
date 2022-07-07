@@ -22,7 +22,9 @@ class TestCreateNewImageFromString:
         new_image_file_path = "./test_new_image_from_string.jpeg"
 
         try:
-            ImageFile.create_new_image_from_string("abc123", (100, 100), new_image_file_path, False)
+            ImageFile.create_new_image_from_string(
+                "abc123", (100, 100), new_image_file_path, False
+            )
             assert path.exists(new_image_file_path)
             assert path.getsize(new_image_file_path) == 791
         finally:
