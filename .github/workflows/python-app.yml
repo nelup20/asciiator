@@ -38,7 +38,7 @@ jobs:
       run: poetry run isort src
 
     - name: Check style (black)
-      run: poetry run black src
+      run: poetry run black src test --check
 
     - name: Check types (mypy)
       run: poetry run mypy src
