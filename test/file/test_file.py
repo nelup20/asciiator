@@ -74,3 +74,11 @@ class TestFileInstance:
         file = File("test.jpeg")
 
         assert file.get_name_with_extension() == "test.jpeg"
+
+    def test_file_instance_to_string(self):
+        file = File("test.jpeg")
+
+        assert (
+            f"{file}"
+            == f"File @ {hex(id(file))}: name = test, path = test.jpeg, type = FileType.Image"
+        )

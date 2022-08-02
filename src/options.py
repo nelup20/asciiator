@@ -2,9 +2,9 @@ import sys
 from typing import List
 from warnings import warn
 
-from file.file import File, FileType
-from file.image_file import ImageFile
-from file.video_file import VideoFile
+from .file.file import File, FileType
+from .file.image_file import ImageFile
+from .file.video_file import VideoFile
 
 
 class Options:
@@ -29,12 +29,9 @@ class Options:
 
                     if file_type is FileType.Image:
                         self.input.append(ImageFile(file_path))
-                    elif file_type is FileType.Video:
+
+                    if file_type is FileType.Video:
                         self.input.append(VideoFile(file_path))
-                    else:
-                        print(
-                            f"Unsupported file type provided: {file_path}. Supported types: .jpg, .png, .mp4, .avi"
-                        )
 
                     continue
 
