@@ -6,10 +6,8 @@ from src.file.file import FileType
 from src.options import Options
 from .helpers import handle_sys_args
 
-args_to_remove = ["--cov-fail-under=85", "--cov=src", "test"]
-
-for arg in args_to_remove:
-    sys.argv.remove(arg)
+# Remove pytest & pytest-cov args
+del sys.argv[1:]
 
 
 class TestOptions:

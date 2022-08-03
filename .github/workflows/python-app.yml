@@ -44,4 +44,4 @@ jobs:
       run: poetry run mypy src
 
     - name: Run tests (pytest, pytest-cov)
-      run: poetry run pytest --cov-fail-under=85 --cov=src test
+      run: poetry run pytest --cov-fail-under=90 --cov=src test
