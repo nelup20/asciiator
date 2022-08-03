@@ -1,5 +1,5 @@
 # asciiator
-A tool to turn image, GIF and video files into ASCII art.
+A tool to turn image and video files into ASCII art.
 
 Simply execute with the input file as the first argument
 ```sh
