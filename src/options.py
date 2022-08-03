@@ -8,16 +8,16 @@ from .file.video_file import VideoFile
 
 
 class Options:
-    inplace = False
-    text_file = False
-    input: List[File] = []
-    reduction_factor = 1
-    inverted_colors = False
-    output_path = "./"
-
-    _HELP_FLAG_MESSAGE = "Use -help to see all available arguments."
-
     def __init__(self) -> None:
+        self.inplace = False
+        self.text_file = False
+        self.input: List[File] = []
+        self.reduction_factor = 1
+        self.inverted_colors = False
+        self.output_path = "./"
+
+        self._HELP_FLAG_MESSAGE = "Use -help to see all available arguments."
+
         if len(sys.argv) > 1:
             for arg in enumerate(sys.argv):
                 if arg[0] == 0:

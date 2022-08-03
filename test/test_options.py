@@ -4,10 +4,10 @@ import pytest
 
 from src.file.file import FileType
 from src.options import Options
-from .helpers import handle_sys_args
+from .helpers import handle_sys_args, clean_up_sys_argv
 
-# Remove pytest & pytest-cov args
-del sys.argv[1:]
+
+clean_up_sys_argv()
 
 
 class TestOptions:
