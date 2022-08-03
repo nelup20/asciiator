@@ -1,7 +1,7 @@
 from math import floor
 
-from file.image_file import ImageFile
-from file.video_file import VideoFile
+from .file.image_file import ImageFile
+from .file.video_file import VideoFile
 
 ASCII_MAPPING_INTERVAL = 11
 
@@ -59,5 +59,5 @@ def transform_image(file: ImageFile, reduction_factor: int) -> str:
     return "".join(ascii_data)
 
 
-def transform_video(file: VideoFile) -> None:
-    print(file.get_data())
+def transform_video(file: VideoFile) -> bytearray:
+    return file.get_data()

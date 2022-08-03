@@ -2,22 +2,22 @@ import sys
 from typing import List
 from warnings import warn
 
-from file.file import File, FileType
-from file.image_file import ImageFile
-from file.video_file import VideoFile
+from .file.file import File, FileType
+from .file.image_file import ImageFile
+from .file.video_file import VideoFile
 
 
 class Options:
-    inplace = False
-    text_file = False
-    input: List[File] = []
-    reduction_factor = 1
-    inverted_colors = False
-    output_path = "./"
-
-    _HELP_FLAG_MESSAGE = "Use -help to see all available arguments."
-
     def __init__(self) -> None:
+        self.inplace = False
+        self.text_file = False
+        self.input: List[File] = []
+        self.reduction_factor = 1
+        self.inverted_colors = False
+        self.output_path = "./"
+
+        self._HELP_FLAG_MESSAGE = "Use -help to see all available arguments."
+
         if len(sys.argv) > 1:
             for arg in enumerate(sys.argv):
                 if arg[0] == 0:
@@ -29,12 +29,9 @@ class Options:
 
                     if file_type is FileType.Image:
                         self.input.append(ImageFile(file_path))
-                    elif file_type is FileType.Video:
+
+                    if file_type is FileType.Video:
                         self.input.append(VideoFile(file_path))
-                    else:
-                        print(
-                            f"Unsupported file type provided: {file_path}. Supported types: .jpg, .png, .mp4, .avi"
-                        )
 
                     continue
 
