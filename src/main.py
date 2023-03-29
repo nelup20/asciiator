@@ -39,7 +39,7 @@ def main():
             )
 
         if isinstance(file, VideoFile):
-            transform_video(file)
+            transform_video(file, options)
 
 
 if __name__ == "__main__":
