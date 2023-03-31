@@ -12,9 +12,9 @@ class Options:
         self.inplace = False
         self.text_file = False
         self.input: List[File] = []
-        self.reduction_factor = 1
+        self.reduction_factor = 4
         self.inverted_colors = False
-        self.output_path = "./"
+        self.output_path = "."
 
         self._HELP_FLAG_MESSAGE = "Use -help to see all available arguments."
 
