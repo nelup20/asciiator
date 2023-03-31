@@ -32,7 +32,7 @@ jobs:
 
     - name: Install dependencies
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-      run: poetry install --no-interaction --no-root && sudo apt update && sudo apt upgrade && sudo apt install ffmpeg
+      run: poetry install --no-interaction --no-root && sudo apt update && sudo apt install ffmpeg
 
     - name: Sort imports (isort)
       run: poetry run isort src
@@ -42,6 +42,9 @@ jobs:
 
     - name: Check types (mypy)
       run: poetry run mypy src
+
+    - name: Check files
+      run: pwd && ls && cd /home/runner/work/asciiator/asciiator/test/resource/video/input/ && ls
 
     - name: Run tests (pytest, pytest-cov)
       run: poetry run pytest --cov-fail-under=95 --cov=src test
