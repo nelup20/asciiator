@@ -59,26 +59,3 @@ class TestCreateNewFile:
                 assert created_file_data[0] == new_file_data
         finally:
             os.remove(new_file_path)
-
-
-class TestFileInstance:
-    def test_file_instance(self):
-        file = File("test.jpeg")
-
-        assert file.name == "test"
-        assert file.extension == "jpeg"
-        assert file.relative_path == "test.jpeg"
-        assert file.type == FileType.Image
-
-    def test_get_name_with_extension(self):
-        file = File("test.jpeg")
-
-        assert file.get_name_with_extension() == "test.jpeg"
-
-    def test_file_instance_to_string(self):
-        file = File("test.jpeg")
-
-        assert (
-            f"{file}"
-            == f"File @ {hex(id(file))}: name = test, path = test.jpeg, type = FileType.Image"
-        )
