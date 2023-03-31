@@ -31,7 +31,7 @@ class VideoFile(File):
         with tempfile.TemporaryDirectory(prefix="asciiator_") as temp_dir:
             # Get framerate
             get_framerate_subprocess = subprocess.run(
-                f'ffprobe -v 0 -of compact=p=0 -select_streams 0 -show_entries stream=r_frame_rate {self.absolute_path}',
+                f"ffprobe -v 0 -of compact=p=0 -select_streams 0 -show_entries stream=r_frame_rate {self.absolute_path}",
                 capture_output=True,
             )
             framerate = (
