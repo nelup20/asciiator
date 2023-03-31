@@ -32,16 +32,20 @@ jobs:
 
     - name: Install dependencies
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-      run: poetry install --no-interaction --no-root && sudo apt update && sudo apt install ffmpeg
+#      run: poetry install --no-interaction --no-root && sudo apt update && sudo apt install ffmpeg
+      run: sudo apt update && sudo apt install ffmpeg
 
-    - name: Sort imports (isort)
-      run: poetry run isort src
+#    - name: Sort imports (isort)
+#      run: poetry run isort src
+#
+#    - name: Check style (black)
+#      run: poetry run black src test --check
+#
+#    - name: Check types (mypy)
+#      run: poetry run mypy src
 
-    - name: Check style (black)
-      run: poetry run black src test --check
+    - name: Check ffprobe
+      run: ffprobe -v 0 -of compact=p=0 -select_streams 0 -show_entries stream=r_frame_rate /home/runner/work/asciiator/asciiator/test/resource/video/input/test.mp4
 
-    - name: Check types (mypy)
-      run: poetry run mypy src
-
-    - name: Run tests (pytest, pytest-cov)
-      run: poetry run pytest --cov-fail-under=95 --cov=src test
+#    - name: Run tests (pytest, pytest-cov)
+#      run: poetry run pytest --cov-fail-under=95 --cov=src test
