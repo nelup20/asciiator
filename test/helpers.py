@@ -5,9 +5,13 @@ import pytest
 
 @pytest.fixture
 def handle_sys_args(request):
-    sys.argv.append(request.param)
+    for arg in request.param:
+        sys.argv.append(arg)
+
     yield
-    sys.argv.remove(request.param)
+
+    for arg in request.param:
+        sys.argv.remove(arg)
 
 
 def clean_up_sys_argv():

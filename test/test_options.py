@@ -1,11 +1,8 @@
-import sys
-
 import pytest
 
 from src.file.file import FileType
 from src.options import Options
-from .helpers import handle_sys_args, clean_up_sys_argv
-
+from .helpers import clean_up_sys_argv, handle_sys_args
 
 clean_up_sys_argv()
 
@@ -20,7 +17,7 @@ class TestOptions:
                 == "No arguments provided. Use -help to see all available arguments."
             )
 
-    @pytest.mark.parametrize("handle_sys_args", ["invalid_arg_123"], indirect=True)
+    @pytest.mark.parametrize("handle_sys_args", [["invalid_arg_123"]], indirect=True)
     def test_options_invalid_argument(self, handle_sys_args):
         try:
             Options()
@@ -30,39 +27,39 @@ class TestOptions:
                 == "Argument #1 is invalid: invalid_arg_123. Use -help to see all available arguments."
             )
 
-    @pytest.mark.parametrize("handle_sys_args", ["-inplace"], indirect=True)
+    @pytest.mark.parametrize("handle_sys_args", [["-inplace"]], indirect=True)
     def test_options_inplace(self, handle_sys_args):
         options = Options()
 
         assert options.inplace
 
-    @pytest.mark.parametrize("handle_sys_args", ["--reduction=3"], indirect=True)
+    @pytest.mark.parametrize("handle_sys_args", [["--reduction=3"]], indirect=True)
     def test_options_reduction(self, handle_sys_args):
         options = Options()
 
         assert options.reduction_factor == 3
 
-    @pytest.mark.parametrize("handle_sys_args", ["-text_file"], indirect=True)
+    @pytest.mark.parametrize("handle_sys_args", [["-text_file"]], indirect=True)
     def test_options_text_file(self, handle_sys_args):
         options = Options()
 
         assert options.text_file
 
-    @pytest.mark.parametrize("handle_sys_args", ["-inverted"], indirect=True)
+    @pytest.mark.parametrize("handle_sys_args", [["-inverted"]], indirect=True)
     def test_options_inverted(self, handle_sys_args):
         options = Options()
 
         assert options.inverted_colors
 
     @pytest.mark.parametrize(
-        "handle_sys_args", ["--output_path=./test/123/"], indirect=True
+        "handle_sys_args", [["--output_path=./test/123/"]], indirect=True
     )
     def test_options_output_path(self, handle_sys_args):
         options = Options()
 
         assert options.output_path == "./test/123/"
 
-    @pytest.mark.parametrize("handle_sys_args", ["test123.mp4"], indirect=True)
+    @pytest.mark.parametrize("handle_sys_args", [["test123.mp4"]], indirect=True)
     def test_options_input_video_file(self, handle_sys_args):
         options = Options()
 
@@ -73,7 +70,7 @@ class TestOptions:
         assert options.input[0].type == FileType.Video
 
     @pytest.mark.parametrize(
-        "handle_sys_args", ["./test/resource/img/test.jpg"], indirect=True
+        "handle_sys_args", [["./test/resource/img/input/test.jpg"]], indirect=True
     )
     def test_options_input_image_file(self, handle_sys_args):
         options = Options()
@@ -84,7 +81,7 @@ class TestOptions:
         assert options.input[0].get_name_with_extension() == "test.jpg"
         assert options.input[0].type == FileType.Image
 
-    @pytest.mark.parametrize("handle_sys_args", ["-help"], indirect=True)
+    @pytest.mark.parametrize("handle_sys_args", [["-help"]], indirect=True)
     def test_options_input_video_file(self, handle_sys_args, capsys):
         Options()
 

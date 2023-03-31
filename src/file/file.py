@@ -1,10 +1,11 @@
 from __future__ import annotations
 
+from abc import ABC, abstractmethod
 from enum import Enum, auto
 from os.path import abspath
 
 
-class File:
+class File(ABC):
     name: str
     extension: str
     relative_path: str
@@ -20,6 +21,10 @@ class File:
         self.name = name.removesuffix(f".{self.extension}")
 
         self.type = FileType.get_file_type(self.get_name_with_extension())
+
+    @abstractmethod
+    def transform(self, options):
+        pass
 
     @staticmethod
     def is_input_file(arg: str) -> bool:
