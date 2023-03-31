@@ -32,7 +32,7 @@ jobs:
 
     - name: Install dependencies
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
-      run: poetry install --no-interaction --no-root && sudo apt install ffmpeg
+      run: poetry install --no-interaction --no-root && sudo apt update && sudo apt upgrade && sudo apt install ffmpeg
 
     - name: Sort imports (isort)
       run: poetry run isort src
