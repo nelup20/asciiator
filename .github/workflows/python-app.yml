@@ -43,8 +43,5 @@ jobs:
     - name: Check types (mypy)
       run: poetry run mypy src
 
-    - name: Check files
-      run: pwd && ls && cd /home/runner/work/asciiator/asciiator/test/resource/video/input/ && ls
-
     - name: Run tests (pytest, pytest-cov)
       run: poetry run pytest --cov-fail-under=95 --cov=src test
