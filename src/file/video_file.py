@@ -42,13 +42,13 @@ class VideoFile(File):
             # Extract frames
             subprocess.run(
                 f'ffmpeg -i "{self.absolute_path}" -vsync 0 "{temp_dir}/frame_$filename%06d.jpg"',
-                shell=True
+                shell=True,
             )
 
             # Extract audio
             subprocess.run(
                 f'ffmpeg -i "{self.absolute_path}" -q:a 0 -map a "{temp_dir}/audio.mp3"',
-                shell=True
+                shell=True,
             )
 
             # Transform frames
@@ -60,7 +60,7 @@ class VideoFile(File):
             # Combine frames back into video
             subprocess.run(
                 f'ffmpeg -framerate {framerate} -i "{temp_dir}/frame_$filename%06d.jpg" -vf pad="width=ceil(iw/2)*2:height=ceil(ih/2)*2" -shortest -pix_fmt yuv420p "{temp_dir}/combined.mp4"',
-                shell=True
+                shell=True,
             )
 
             # Add audio back to video
@@ -72,5 +72,5 @@ class VideoFile(File):
 
             subprocess.run(
                 f'ffmpeg -i "{temp_dir}/combined.mp4" -i "{temp_dir}/audio.mp3" -c copy -map 0:v:0 -map 1:a:0 "{new_video_path}"',
-                shell=True
+                shell=True,
             )
