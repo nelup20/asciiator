@@ -92,6 +92,7 @@ class TestMain:
                 subprocess.run(
                     f'ffprobe -v 0 -of compact=p=0 -select_streams 0 -show_entries stream=width,height,r_frame_rate,duration "{input_file.absolute_path}"',
                     capture_output=True,
+                    shell=True
                 ).stdout,
                 "utf-8",
             )
@@ -100,6 +101,7 @@ class TestMain:
                 subprocess.run(
                     f'ffprobe -v 0 -of compact=p=0 -select_streams 0 -show_entries stream=width,height,r_frame_rate,duration "{output_file.absolute_path}"',
                     capture_output=True,
+                    shell=True
                 ).stdout,
                 "utf-8",
             )
@@ -108,6 +110,7 @@ class TestMain:
                 subprocess.run(
                     f'ffprobe -v 0 -of compact=p=0 -select_streams 0 -show_entries stream=width,height,r_frame_rate,duration "{expected_output_file.absolute_path}"',
                     capture_output=True,
+                    shell=True
                 ).stdout,
                 "utf-8",
             )

@@ -1,5 +1,3 @@
-# This workflow will install Python dependencies, run tests and lint with a single version of Python
-# For more information see: https://help.github.com/actions/language-and-framework-guides/using-python-with-github-actions
 
 name: Python application
 
@@ -34,14 +32,14 @@ jobs:
       if: steps.cached-poetry-dependencies.outputs.cache-hit != 'true'
       run: poetry install --no-interaction --no-root && sudo apt update && sudo apt install ffmpeg
 
-#    - name: Sort imports (isort)
-#      run: poetry run isort src
-#
-#    - name: Check style (black)
-#      run: poetry run black src test --check
-#
-#    - name: Check types (mypy)
-#      run: poetry run mypy src
+    - name: Sort imports (isort)
+      run: poetry run isort src
+
+    - name: Check style (black)
+      run: poetry run black src test --check
+
+    - name: Check types (mypy)
+      run: poetry run mypy src
 
     - name: Run tests (pytest, pytest-cov)
       run: poetry run pytest --cov-fail-under=95 --cov=src test

@@ -31,7 +31,7 @@ class VideoFile(File):
         with tempfile.TemporaryDirectory(prefix="asciiator_") as temp_dir:
             # Get framerate
             get_framerate_subprocess = subprocess.run(
-                f"ffprobe -v 0 -of compact=p=0 -select_streams 0 -show_entries stream=r_frame_rate {self.absolute_path}",
+                f'ffprobe -v 0 -of compact=p=0 -select_streams 0 -show_entries stream=r_frame_rate "{self.absolute_path}"',
                 capture_output=True,
                 shell=True,
             )
@@ -41,12 +41,14 @@ class VideoFile(File):
 
             # Extract frames
             subprocess.run(
-                f'ffmpeg -i "{self.absolute_path}" -vsync 0 "{temp_dir}/frame_$filename%06d.jpg"'
+                f'ffmpeg -i "{self.absolute_path}" -vsync 0 "{temp_dir}/frame_$filename%06d.jpg"',
+                shell=True
             )
 
             # Extract audio
             subprocess.run(
-                f'ffmpeg -i "{self.absolute_path}" -q:a 0 -map a "{temp_dir}/audio.mp3"'
+                f'ffmpeg -i "{self.absolute_path}" -q:a 0 -map a "{temp_dir}/audio.mp3"',
+                shell=True
             )
 
             # Transform frames
@@ -57,7 +59,8 @@ class VideoFile(File):
 
             # Combine frames back into video
             subprocess.run(
-                f'ffmpeg -framerate {framerate} -i "{temp_dir}/frame_$filename%06d.jpg" -vf pad="width=ceil(iw/2)*2:height=ceil(ih/2)*2" -shortest -pix_fmt yuv420p "{temp_dir}/combined.mp4"'
+                f'ffmpeg -framerate {framerate} -i "{temp_dir}/frame_$filename%06d.jpg" -vf pad="width=ceil(iw/2)*2:height=ceil(ih/2)*2" -shortest -pix_fmt yuv420p "{temp_dir}/combined.mp4"',
+                shell=True
             )
 
             # Add audio back to video
@@ -68,5 +71,6 @@ class VideoFile(File):
             )
 
             subprocess.run(
-                f'ffmpeg -i "{temp_dir}/combined.mp4" -i "{temp_dir}/audio.mp3" -c copy -map 0:v:0 -map 1:a:0 "{new_video_path}"'
+                f'ffmpeg -i "{temp_dir}/combined.mp4" -i "{temp_dir}/audio.mp3" -c copy -map 0:v:0 -map 1:a:0 "{new_video_path}"',
+                shell=True
             )
