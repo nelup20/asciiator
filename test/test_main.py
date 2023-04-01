@@ -6,6 +6,7 @@ import pytest
 from src.file.image_file import ImageFile
 from src.file.video_file import VideoFile
 from src.main import main
+
 from .helpers import clean_up_sys_argv, handle_sys_args
 
 clean_up_sys_argv()

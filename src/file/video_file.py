@@ -2,6 +2,8 @@ import os
 import subprocess
 import tempfile
 from glob import glob
+from itertools import repeat
+from multiprocessing import Pool
 
 from .file import File
 from .image_file import ImageFile
@@ -54,8 +56,8 @@ class VideoFile(File):
             # Transform frames
             frame_list = glob(os.path.join(temp_dir, "*.jpg"))
 
-            for frame in frame_list:
-                _transform_frame(frame, options)
+            with Pool() as pool:
+                pool.starmap(_transform_frame, zip(frame_list, repeat(options)))
 
             # Combine frames back into video
             subprocess.run(
