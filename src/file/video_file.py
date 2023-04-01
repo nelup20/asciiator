@@ -2,12 +2,12 @@ import os
 import subprocess
 import tempfile
 from glob import glob
+from itertools import repeat
 from multiprocessing import Pool
 
 from .file import File
 from .image_file import ImageFile
 
-from itertools import repeat
 
 def _transform_frame(frame: str, options) -> None:
     frame_file = ImageFile(frame)
