@@ -5,7 +5,7 @@ import pytest
 
 from src.file.file import FileType
 from src.file.image_file import ImageFile
-from src.options import Options
+from src.util.options import Options
 
 from ..helpers import clean_up_sys_argv, handle_sys_args
 

@@ -3,6 +3,19 @@ from __future__ import annotations
 from abc import ABC, abstractmethod
 from enum import Enum, auto
 from os.path import abspath
+from typing import Tuple
+
+IMAGE_FILE_EXTENSIONS = (".jpg", ".jpeg", ".png")
+VIDEO_FILE_EXTENSIONS = (
+    ".mp4",
+    ".avi",
+    ".flv",
+    ".mov",
+    ".webm",
+    ".wmv",
+    ".mkv",
+    ".mpeg",
+)
 
 
 class File(ABC):
@@ -28,7 +41,7 @@ class File(ABC):
 
     @staticmethod
     def is_input_file(arg: str) -> bool:
-        return arg.endswith((".jpg", ".jpeg", ".png", ".mp4", "avi"))
+        return arg.endswith(FileType.get_supported_file_extensions())
 
     @staticmethod
     def create_new_file(data, path) -> None:
@@ -49,10 +62,14 @@ class FileType(Enum):
 
     @classmethod
     def get_file_type(cls, input_file: str) -> FileType:
-        if input_file.endswith((".jpg", ".jpeg", ".png")):
+        if input_file.endswith(IMAGE_FILE_EXTENSIONS):
             return cls.Image
 
-        if input_file.endswith((".mp4", ".avi")):
+        if input_file.endswith(VIDEO_FILE_EXTENSIONS):
             return cls.Video
 
         return cls.Other
+
+    @staticmethod
+    def get_supported_file_extensions() -> Tuple:
+        return IMAGE_FILE_EXTENSIONS + VIDEO_FILE_EXTENSIONS

@@ -1,10 +1,11 @@
 import sys
+from os import path
 from typing import List
 from warnings import warn
 
-from .file.file import File, FileType
-from .file.image_file import ImageFile
-from .file.video_file import VideoFile
+from src.file.file import File, FileType
+from src.file.image_file import ImageFile
+from src.file.video_file import VideoFile
 
 
 class Options:
@@ -26,6 +27,9 @@ class Options:
                 if File.is_input_file(arg[1]):
                     file_path = arg[1]
                     file_type = FileType.get_file_type(file_path)
+
+                    if not path.exists(file_path):
+                        raise FileNotFoundError(file_path)
 
                     if file_type is FileType.Image:
                         self.input.append(ImageFile(file_path))
@@ -53,7 +57,7 @@ class Options:
                     case "-text_file":
                         self.text_file = True
                     case "-help":
-                        print("TODO. Sorry can't help ya right now.")
+                        sys.exit(f"TODO. Sorry can't help ya right now.")
                     case "-inverted":
                         self.inverted_colors = True
                     case _:
