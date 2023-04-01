@@ -73,6 +73,6 @@ class VideoFile(File):
             )
 
             subprocess.run(
-                f'ffmpeg -i "{temp_dir}/combined.mp4" -i "{temp_dir}/audio.mp3" -c copy -map 0:v:0 -map 1:a:0 "{new_video_path}"',
+                f'ffmpeg -i "{temp_dir}/combined.mp4" -i "{temp_dir}/audio.mp3" -y -c copy -map 0:v:0 -map 1:a:0 "{new_video_path}"',
                 shell=True,
             )
