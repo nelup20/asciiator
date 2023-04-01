@@ -15,7 +15,7 @@ class Options:
         self.input: List[File] = []
         self.reduction_factor = 4
         self.inverted_colors = False
-        self.output_path = ".."
+        self.output_path = "."
 
         self._HELP_FLAG_MESSAGE = "Use -help to see all available arguments."
 

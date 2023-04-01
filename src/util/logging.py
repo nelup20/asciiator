@@ -2,15 +2,18 @@ import logging
 import warnings
 from datetime import date
 from os import makedirs
+from pathlib import Path
 
 
 def setup_logger() -> None:
-    makedirs("../logs", exist_ok=True)
+    makedirs(f"{Path.home()}/.asciiator/logs", exist_ok=True)
 
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
 
-    file_handler = logging.FileHandler(f"../logs/asciiator_{date.today()}.log")
+    file_handler = logging.FileHandler(
+        f"{Path.home()}/.asciiator/logs/asciiator_{date.today()}.log"
+    )
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(
         logging.Formatter("\n%(asctime)s - %(name)s - %(levelname)s - %(message)s")

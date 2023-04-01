@@ -83,7 +83,8 @@ class TestOptions:
         assert options.input[0].type == FileType.Image
 
     @pytest.mark.parametrize("handle_sys_args", [["-help"]], indirect=True)
-    def test_options_input_video_file(self, handle_sys_args, capsys):
-        Options()
+    def test_options_input_video_file(self, handle_sys_args):
+        with pytest.raises(SystemExit) as sys_exit:
+            Options()
 
-        assert capsys.readouterr().out == "TODO. Sorry can't help ya right now.\n"
+        assert sys_exit.value.args[0] == "TODO. Sorry can't help ya right now."
