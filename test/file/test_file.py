@@ -1,7 +1,7 @@
 import os
+from os import path
 
 from src.file.file import File, FileType
-from os import path
 
 
 class TestIsInputFile:
