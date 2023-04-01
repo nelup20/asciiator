@@ -5,7 +5,8 @@ from enum import Enum, auto
 from os.path import abspath
 from typing import Tuple
 
-IMAGE_FILE_EXTENSIONS = (".jpg", ".jpeg", ".png")
+GIF_FILE_EXTENSION = (".gif",)
+IMAGE_FILE_EXTENSIONS = (".jpg", ".jpeg", ".png", ".webp", ".bmp", ".tiff")
 VIDEO_FILE_EXTENSIONS = (
     ".mp4",
     ".avi",
@@ -58,6 +59,7 @@ class File(ABC):
 class FileType(Enum):
     Image = auto()
     Video = auto()
+    Gif = auto()
     Other = auto()
 
     @classmethod
@@ -68,8 +70,11 @@ class FileType(Enum):
         if input_file.endswith(VIDEO_FILE_EXTENSIONS):
             return cls.Video
 
+        if input_file.endswith(GIF_FILE_EXTENSION):
+            return cls.Gif
+
         return cls.Other
 
     @staticmethod
     def get_supported_file_extensions() -> Tuple:
-        return IMAGE_FILE_EXTENSIONS + VIDEO_FILE_EXTENSIONS
+        return IMAGE_FILE_EXTENSIONS + VIDEO_FILE_EXTENSIONS + GIF_FILE_EXTENSION

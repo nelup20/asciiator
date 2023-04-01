@@ -4,6 +4,7 @@ from typing import List
 from warnings import warn
 
 from src.file.file import File, FileType
+from src.file.gif_file import GifFile
 from src.file.image_file import ImageFile
 from src.file.video_file import VideoFile
 
@@ -36,6 +37,9 @@ class Options:
 
                     if file_type is FileType.Video:
                         self.input.append(VideoFile(file_path))
+
+                    if file_type is FileType.Gif:
+                        self.input.append(GifFile(file_path))
 
                     continue
 

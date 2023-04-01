@@ -13,7 +13,10 @@ Supported input/output formats:
 - [ ] Image:
    - [x] JPEG
    - [x] PNG
-   - [ ] GIF
+   - [x] WEBP
+   - [x] BMP
+   - [x] TIFF
+   - [x] GIF
 - [x] Video:
    - [x] MP4
    - [x] AVI
