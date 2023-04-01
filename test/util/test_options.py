@@ -3,7 +3,7 @@ import pytest
 from src.file.file import FileType
 from src.util.options import Options
 
-from .helpers import clean_up_sys_argv, handle_sys_args
+from test.helpers import clean_up_sys_argv, handle_sys_args
 
 clean_up_sys_argv()
 

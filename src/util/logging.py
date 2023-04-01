@@ -4,16 +4,17 @@ from datetime import date
 from os import makedirs
 from pathlib import Path
 
+LOG_DIRECTORY = f"{Path.home()}/.asciiator/logs"
+LOG_FILE_PATH = f"{LOG_DIRECTORY}/asciiator_{date.today()}.log"
+
 
 def setup_logger() -> None:
-    makedirs(f"{Path.home()}/.asciiator/logs", exist_ok=True)
+    makedirs(LOG_DIRECTORY, exist_ok=True)
 
     logger = logging.getLogger()
     logger.setLevel(logging.DEBUG)
 
-    file_handler = logging.FileHandler(
-        f"{Path.home()}/.asciiator/logs/asciiator_{date.today()}.log"
-    )
+    file_handler = logging.FileHandler(LOG_FILE_PATH)
     file_handler.setLevel(logging.DEBUG)
     file_handler.setFormatter(
         logging.Formatter("\n%(asctime)s - %(name)s - %(levelname)s - %(message)s")

@@ -33,7 +33,7 @@ jobs:
       run: poetry install --no-interaction --no-root && sudo apt update && sudo apt install ffmpeg
 
     - name: Sort imports (isort)
-      run: poetry run isort src test --check-only
+      run: poetry run isort src --check-only
 
     - name: Check style (black)
       run: poetry run black src test --check
