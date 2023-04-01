@@ -14,8 +14,15 @@ Supported input/output formats:
    - [x] JPEG
    - [x] PNG
    - [ ] GIF
-- [ ] Video:
-   - [ ] MP4
+- [x] Video:
+   - [x] MP4
+   - [x] AVI
+   - [x] FLV
+   - [x] MOV
+   - [x] WEBM
+   - [x] WMV
+   - [x] MKV
+   - [x] MPEG
 
 ## Requirements/Dependencies
 
