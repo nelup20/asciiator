@@ -3,7 +3,6 @@ from PIL import Image, ImageDraw, ImageFont
 from src.file.image_file import ImageFile
 
 
-# TODO: tests
 class GifFile(ImageFile):
     def __init__(self, relative_path: str) -> None:
         # Original image can't be converted to greyscale, only individual frames (otherwise end result is a still image)

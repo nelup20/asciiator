@@ -10,7 +10,7 @@ and asciiator will transform the content/pixels to ASCII and save to a new file.
 
 Supported input/output formats:
 
-- [ ] Image:
+- [x] Image:
    - [x] JPEG
    - [x] PNG
    - [x] WEBP
