@@ -16,7 +16,7 @@ The binaries for Asciiator can be found under releases. The only other requireme
 
 ## Usage and Options
 ### Usage
-Simply execute with the path to your input file as the first argument
+Simply execute with the path to your input file
 ```sh
 asciiator "./your_image.jpg"
 ```

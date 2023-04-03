@@ -1,7 +1,7 @@
 import pytest
 
 from src.file.file import FileType
-from src.util.options import Options
+from src.util.options import Options, HELP_MESSAGE
 
 from test.helpers import clean_up_sys_argv, handle_sys_args
 
@@ -87,4 +87,4 @@ class TestOptions:
         with pytest.raises(SystemExit) as sys_exit:
             Options()
 
-        assert sys_exit.value.args[0] == "TODO. Sorry can't help ya right now."
+        assert sys_exit.value.args[0] == HELP_MESSAGE
