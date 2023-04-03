@@ -15,7 +15,7 @@ class TestOptions:
         except Exception as exception:
             assert (
                 f"{exception}"
-                == "No arguments provided. Use -help to see all available arguments."
+                == "No arguments provided. Use -help to see all available flags."
             )
 
     @pytest.mark.parametrize("handle_sys_args", [["invalid_arg_123"]], indirect=True)
@@ -25,7 +25,7 @@ class TestOptions:
         except Exception as exception:
             assert (
                 f"{exception}"
-                == "Argument #1 is invalid: invalid_arg_123. Use -help to see all available arguments."
+                == "Argument #1 is invalid: invalid_arg_123. Use -help to see all available flags."
             )
 
     @pytest.mark.parametrize("handle_sys_args", [["-inplace"]], indirect=True)
