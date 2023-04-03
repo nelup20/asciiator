@@ -16,10 +16,7 @@ def _transform_frame(frame: str, options) -> None:
 
     ImageFile.create_new_image_from_string(
         transformed_data,
-        (
-            int(frame_file.get_width() * 6 / options.reduction_factor),
-            int(frame_file.get_height() * 7.5 / options.reduction_factor),
-        ),
+        frame_file.get_new_image_size(options),
         frame_file.absolute_path,
         options,
     )

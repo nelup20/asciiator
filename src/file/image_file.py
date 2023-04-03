@@ -1,6 +1,7 @@
 from __future__ import annotations
 
 from math import floor
+from typing import Tuple
 
 from PIL import Image, ImageDraw, ImageFont
 from PIL.Image import Image as PillowImage
@@ -37,10 +38,11 @@ _ASCII_MAPPING = {
 
 
 class ImageFile(File):
-    def __init__(self, relative_path: str) -> None:
+    def __init__(self, relative_path: str, greyscale=True) -> None:
         super().__init__(relative_path)
 
-        self.opened_file: PillowImage = Image.open(self.absolute_path).convert("L")
+        image: PillowImage = Image.open(self.absolute_path)
+        self.opened_file = image.convert("L") if greyscale else image
 
     def transform(self, options) -> None:
         transformed_data = self.transform_data(options)
@@ -50,19 +52,10 @@ class ImageFile(File):
                 transformed_data, f"{options.output_path}/{self.name}_asciiator.txt"
             )
 
-        new_image_path = (
-            self.absolute_path
-            if options.inplace
-            else f"{options.output_path}/{self.name}_asciiator.{self.extension}"
-        )
-
         ImageFile.create_new_image_from_string(
             transformed_data,
-            (
-                int(self.get_width() * 6 / options.reduction_factor),
-                int(self.get_height() * 7.5 / options.reduction_factor),
-            ),
-            new_image_path,
+            self.get_new_image_size(options),
+            self.get_new_image_path(options),
             options,
         )
 
@@ -70,8 +63,7 @@ class ImageFile(File):
     def create_new_image_from_string(
         data: str, size: tuple[int, int], path: str, options
     ) -> None:
-        background_color = 0 if options.inverted_colors else 255
-        text_color = 255 if options.inverted_colors else 0
+        background_color, text_color = ImageFile.get_new_image_colors(options)
 
         new_image = Image.new("L", size=size, color=background_color)
         ImageDraw.Draw(new_image).text(
@@ -82,8 +74,8 @@ class ImageFile(File):
 
     # This reduction_factor essentially just skips lines/pixels, so I'm assuming it's not an ideal algorithm.
     # Maybe take the average value of the surrounding/grouped pixels instead?
-    def transform_data(self, options) -> str:
-        image_data = self.get_data()
+    def transform_data(self, options, data=None) -> str:
+        image_data = self.get_data() if data is None else data
 
         ascii_data = []
 
@@ -111,6 +103,26 @@ class ImageFile(File):
                     ascii_data.append("\n")
 
         return "".join(ascii_data)
+
+    def get_new_image_size(self, options) -> Tuple[int, int]:
+        return (
+            int(self.get_width() * 6 / options.reduction_factor),
+            int(self.get_height() * 7.5 / options.reduction_factor),
+        )
+
+    def get_new_image_path(self, options) -> str:
+        return (
+            self.absolute_path
+            if options.inplace
+            else f"{options.output_path}/{self.name}_asciiator.{self.extension}"
+        )
+
+    @staticmethod
+    def get_new_image_colors(options) -> Tuple[int, int]:
+        background_color = 0 if options.inverted_colors else 255
+        text_color = 255 if options.inverted_colors else 0
+
+        return background_color, text_color
 
     def get_data(self) -> bytearray:
         return self.opened_file.getdata()
