@@ -3,6 +3,7 @@ import subprocess
 
 import pytest
 
+from src.file.gif_file import GifFile
 from src.file.image_file import ImageFile
 from src.file.video_file import VideoFile
 from src.main import main
@@ -14,6 +15,7 @@ clean_up_sys_argv()
 
 class TestMain:
     output_image_path = "./test_asciiator.jpg"
+    output_gif_path = "./test_asciiator.gif"
     output_video_path = "./test_asciiator.mp4"
 
     @pytest.mark.parametrize(
@@ -73,6 +75,24 @@ class TestMain:
             assert len(output_file.get_data()) == len(expected_output_file.get_data())
         finally:
             os.remove(self.output_image_path)
+
+    @pytest.mark.parametrize(
+        "handle_sys_args", [["./test/resource/gif/input/test.gif"]], indirect=True
+    )
+    def test_main_gif_file_default_reduction(self, handle_sys_args):
+        try:
+            main()
+
+            output_file = GifFile(self.output_gif_path)
+            expected_output_file = GifFile(
+                "./test/resource/gif/output/test_gif_expected_output.gif"
+            )
+
+            assert output_file.get_width() == (expected_output_file.get_width())
+            assert output_file.get_height() == (expected_output_file.get_height())
+            assert len(output_file.get_data()) == len(expected_output_file.get_data())
+        finally:
+            os.remove(self.output_gif_path)
 
     @pytest.mark.parametrize(
         "handle_sys_args",
