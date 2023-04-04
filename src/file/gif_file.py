@@ -19,7 +19,7 @@ class GifFile(ImageFile):
             save_all=True,
             append_images=new_frame_list[1:],
             duration=self.opened_file.info["duration"],
-            loop=self.opened_file.info["loop"],
+            loop=0,
         )
 
     def transform_frame(self, frame: int, options) -> Image.Image:

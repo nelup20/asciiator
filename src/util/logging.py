@@ -12,10 +12,10 @@ def setup_logger() -> None:
     makedirs(LOG_DIRECTORY, exist_ok=True)
 
     logger = logging.getLogger()
-    logger.setLevel(logging.DEBUG)
+    logger.setLevel(logging.INFO)
 
     file_handler = logging.FileHandler(LOG_FILE_PATH)
-    file_handler.setLevel(logging.DEBUG)
+    file_handler.setLevel(logging.INFO)
     file_handler.setFormatter(
         logging.Formatter("\n%(asctime)s - %(name)s - %(levelname)s - %(message)s")
     )

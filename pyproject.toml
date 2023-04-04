@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "asciiator"
-version = "0.1.0"
+version = "1.0.0"
 description = "A CLI tool to turn image and video files into ASCII art."
 authors = ["nelup20 <nelu.platonov@gmail.com>"]
 license = "MIT"
