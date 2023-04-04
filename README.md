@@ -12,7 +12,7 @@ A CLI tool to turn images and videos into ASCII art.
 - [Contributing](#contributing)
 
 ## Installation
-The binaries for Asciiator can be found under releases. The only other requirement is [FFmpeg](https://ffmpeg.org/) which needs to be installed & in your PATH in order to convert videos.
+The binaries for Asciiator can be found under [releases](https://github.com/nelup20/asciiator/releases). The only other requirement is [FFmpeg](https://ffmpeg.org/) which needs to be installed & in your PATH in order to convert videos.
 
 ## Usage and Options
 ### Usage
