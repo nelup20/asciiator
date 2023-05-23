@@ -99,7 +99,7 @@ class ImageFile(File):
 
                 ascii_data.append(char)
 
-                if column % self.get_width() == 0:
+                if column != 0 and column % self.get_width() == 0:
                     ascii_data.append("\n")
 
         return "".join(ascii_data)
