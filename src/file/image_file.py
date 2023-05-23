@@ -99,7 +99,7 @@ class ImageFile(File):
 
                 ascii_data.append(char)
 
-                if column % self.get_width() == 0:
+                if column != 0 and column % self.get_width() == 0:
                     ascii_data.append("\n")
 
         return "".join(ascii_data)
@@ -119,8 +119,8 @@ class ImageFile(File):
 
     @staticmethod
     def get_new_image_colors(options) -> Tuple[int, int]:
-        background_color = 0 if options.inverted_colors else 255
-        text_color = 255 if options.inverted_colors else 0
+        background_color = 255 if options.inverted_colors else 0
+        text_color = 0 if options.inverted_colors else 255
 
         return background_color, text_color
 

@@ -52,14 +52,14 @@ class TestCreateNewImageFromString:
                 "abc123", (100, 100), new_image_file_path, Options()
             )
             assert path.exists(new_image_file_path)
-            assert path.getsize(new_image_file_path) == 791
+            assert path.getsize(new_image_file_path) == 789
         finally:
             os.remove(new_image_file_path)
 
 
 @pytest.mark.parametrize(
     "handle_sys_args",
-    [["./test/resource/img/input/test.jpg", "--reduction=3"]],
+    [["./test/resource/img/input/test.jpg", "--reduction", "3"]],
     indirect=True,
 )
 class TestTransformImage:
