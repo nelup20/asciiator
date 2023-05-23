@@ -9,16 +9,16 @@ A CLI tool to turn images and videos into ASCII art.
 - [Local development](#local-development)
   - [Requirements/Dependencies](#requirementsdependencies)
   - [Running](#running)
-- [Contributing](#contributing)
+- [Contributing and issues](#contributing-and-issues)
 
 ## Installation
-The binaries for Asciiator can be found under [releases](https://github.com/nelup20/asciiator/releases). The only other requirement is [FFmpeg](https://ffmpeg.org/) which needs to be installed & in your PATH in order to convert videos.
+The binaries for Asciiator can be found under [releases](https://github.com/nelup20/asciiator/releases). The only requirement is [FFmpeg](https://ffmpeg.org/) which needs to be installed & in your PATH in order to convert videos.
 
 ## Usage and Options
 ### Usage
-Simply execute with the path to your input file
+Simply execute with the path to your input files
 ```sh
-asciiator "./your_image.jpg"
+asciiator "./your_image.jpg" "./your_image_2.jpg"
 ```
 
 and asciiator will transform the content/pixels to ASCII and save to a new file.
@@ -44,15 +44,15 @@ and asciiator will transform the content/pixels to ASCII and save to a new file.
 
 ### Optional flags
 
-| Flag                            | Description                                                                                                                                                                                                                    |
-|:--------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| --inplace                       | Modify the file **inplace**. The original file will be transformed to ASCII and no new media/output file will be generated.                                                                                                    |
-| --help                          | Display the help documentation                                                                                                                                                                                                 |
-| --inverted                      | Invert the colors for the background and text. By default, the background color is black (0) and the text color is white (255). If --inverted is present, the background will be white and the text color will be black.       |
-| --text_file                     | Save the transformed ASCII art to a .txt file as well (only applicable when the input is a image)                                                                                                                              |
-| --reduction x                   | Reduce the output by a factor of x (int). Default value: 4. Example: --reduction 2 to convert half of the pixels to ASCII                                                                                                      |
-| &#x2011;&#x2011;output_path="x" | Specify the output path where all new files will be created. By default it's the current directory. **Warning:** if the --inplace flag is present, then this flag will be ignored, so the original absolute path will be used. |
-| --version                       | Display the version of Asciiator                                                                                                                                                                                               |
+| Flag                          | Description                                                                                                                                                                                                                    |
+|:------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --inplace                     | Modify the file **inplace**. The original file will be transformed to ASCII and no new media/output file will be generated.                                                                                                    |
+| --help                        | Display the help documentation                                                                                                                                                                                                 |
+| --inverted                    | Invert the colors for the background and text. By default, the background color is black (0) and the text color is white (255). If --inverted is present, the background will be white and the text color will be black.       |
+| --text_file                   | Save the transformed ASCII art to a .txt file as well (only applicable when the input is a image)                                                                                                                              |
+| --reduction x                 | Reduce the output by a factor of x (int). Default value: 4. Example: --reduction 2 to convert half of the pixels to ASCII                                                                                                      |
+| &#x2011;&#x2011;output_path x | Specify the output path where all new files will be created. By default it's the current directory. **Warning:** if the --inplace flag is present, then this flag will be ignored, so the original absolute path will be used. |
+| --version                     | Display the version of Asciiator                                                                                                                                                                                               |
 
 ## Local development
 This project uses [Poetry](https://python-poetry.org/) as its package/dependency manager & [FFmpeg](https://ffmpeg.org/) for converting videos.
@@ -86,7 +86,7 @@ Inside the container:
 python -m src.main "path_to_your_image"
 ```
 
-## Contributing
+## Contributing and issues
 Although I think it's very unlikely that this project will receive much attention/contributions, I'd like to thank you if you do end up contributing or at least consider doing so! :D
 
 Please create an issue with an applicable label instead of mailing me directly and include any logs if appropriate. Asciiator stores logs in your home directory at `~/.asciiator/logs`\
