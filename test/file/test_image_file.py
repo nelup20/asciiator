@@ -59,7 +59,7 @@ class TestCreateNewImageFromString:
 
 @pytest.mark.parametrize(
     "handle_sys_args",
-    [["./test/resource/img/input/test.jpg", "--reduction=3"]],
+    [["./test/resource/img/input/test.jpg", "--reduction", "3"]],
     indirect=True,
 )
 class TestTransformImage:

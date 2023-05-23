@@ -20,7 +20,7 @@ class TestMain:
 
     @pytest.mark.parametrize(
         "handle_sys_args",
-        [["./test/resource/img/input/test.jpg", "--reduction=1"]],
+        [["./test/resource/img/input/test.jpg", "--reduction", "1"]],
         indirect=True,
     )
     def test_main_image_file_no_reduction(self, handle_sys_args):
@@ -40,7 +40,7 @@ class TestMain:
 
     @pytest.mark.parametrize(
         "handle_sys_args",
-        [["./test/resource/img/input/test.jpg", "--reduction=2"]],
+        [["./test/resource/img/input/test.jpg", "--reduction", "2"]],
         indirect=True,
     )
     def test_main_image_file_2_reduction(self, handle_sys_args):
@@ -96,7 +96,7 @@ class TestMain:
 
     @pytest.mark.parametrize(
         "handle_sys_args",
-        [["./test/resource/video/input/test.mp4", "--reduction=8"]],
+        [["./test/resource/video/input/test.mp4", "--reduction", "8"]],
         indirect=True,
     )
     def test_main_video_file_8_reduction(self, handle_sys_args):
