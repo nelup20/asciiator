@@ -7,6 +7,8 @@ from src.file.gif_file import GifFile
 from src.file.image_file import ImageFile
 from src.file.video_file import VideoFile
 
+VERSION = "Asciiator 2.0.0"
+
 
 class Options:
     def __init__(self) -> None:
@@ -62,9 +64,7 @@ class Options:
             "path will be used.",
         )
 
-        arg_parser.add_argument(
-            "--version", action="version", version="Asciiator 1.0.1"
-        )
+        arg_parser.add_argument("--version", action="version", version=VERSION)
 
         args = arg_parser.parse_args()
 
