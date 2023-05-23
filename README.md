@@ -44,14 +44,15 @@ and asciiator will transform the content/pixels to ASCII and save to a new file.
 
 ### Optional flags
 
-| Flag                            | Description                                                                                                                                                                                                                   |
-|:--------------------------------|:------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
-| -inplace                        | Modify the file **inplace**. The original file will be transformed to ASCII and no new media/output file will be generated.                                                                                                   |
-| -help                           | Display the help documentation                                                                                                                                                                                                |
-| -inverted                       | Invert the colors for the background and text. By default, the background color is white (255) and the text color is black (0). If -inverted is present, the background will be black and the text color will be white.       |
-| -text_file                      | Save the transformed ASCII art to a .txt file as well (only applicable when the input is a image)                                                                                                                             |
-| --reduction=x                   | Reduce the output by a factor of x (int). Default value: 4. Example: --reduction=2 to convert half of the pixels to ASCII                                                                                                     |
-| &#x2011;&#x2011;output_path="x" | Specify the output path where all new files will be created. By default it's the current directory. **Warning:** if the -inplace flag is present, then this flag will be ignored, so the original absolute path will be used. |
+| Flag                            | Description                                                                                                                                                                                                                    |
+|:--------------------------------|:-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
+| --inplace                       | Modify the file **inplace**. The original file will be transformed to ASCII and no new media/output file will be generated.                                                                                                    |
+| --help                          | Display the help documentation                                                                                                                                                                                                 |
+| --inverted                      | Invert the colors for the background and text. By default, the background color is black (0) and the text color is white (255). If --inverted is present, the background will be white and the text color will be black.       |
+| --text_file                     | Save the transformed ASCII art to a .txt file as well (only applicable when the input is a image)                                                                                                                              |
+| --reduction x                   | Reduce the output by a factor of x (int). Default value: 4. Example: --reduction 2 to convert half of the pixels to ASCII                                                                                                      |
+| &#x2011;&#x2011;output_path="x" | Specify the output path where all new files will be created. By default it's the current directory. **Warning:** if the --inplace flag is present, then this flag will be ignored, so the original absolute path will be used. |
+| --version                       | Display the version of Asciiator                                                                                                                                                                                               |
 
 ## Local development
 This project uses [Poetry](https://python-poetry.org/) as its package/dependency manager & [FFmpeg](https://ffmpeg.org/) for converting videos.

@@ -52,7 +52,7 @@ class TestCreateNewImageFromString:
                 "abc123", (100, 100), new_image_file_path, Options()
             )
             assert path.exists(new_image_file_path)
-            assert path.getsize(new_image_file_path) == 791
+            assert path.getsize(new_image_file_path) == 789
         finally:
             os.remove(new_image_file_path)
 
