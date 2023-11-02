@@ -87,7 +87,5 @@ python -m src.main "path_to_your_image"
 ```
 
 ## Contributing and issues
-Although I think it's very unlikely that this project will receive much attention/contributions, I'd like to thank you if you do end up contributing or at least consider doing so! :D
-
 Please create an issue with an applicable label instead of mailing me directly and include any logs if appropriate. Asciiator stores logs in your home directory at `~/.asciiator/logs`\
 For small things like typo's feel free to create a PR directly without an issue. 
