@@ -1,15 +1,23 @@
 # Asciiator
 A CLI tool to turn images and videos into ASCII art.
 
-- [Installation](#installation)
-- [Usage and Options](#usage-and-options)
-  - [Usage](#usage)
-  - [Supported formats](#supported-formats)
-  - [Optional flags](#optional-flags)
-- [Local development](#local-development)
-  - [Requirements/Dependencies](#requirementsdependencies)
-  - [Running](#running)
-- [Contributing and issues](#contributing-and-issues)
+* [Examples](#examples)
+* [Installation](#installation)
+* [Usage and Options](#usage-and-options)
+  * [Usage](#usage)
+  * [Supported formats:](#supported-formats)
+  * [Optional flags](#optional-flags)
+* [Local development](#local-development)
+  * [Requirements/Dependencies](#requirementsdependencies)
+  * [Running](#running)
+* [Contributing and issues](#contributing-and-issues)
+
+## Examples
+|                Input                |                Output                |
+|:-----------------------------------:|:------------------------------------:|
+| ![](./examples/example_1_input.jpg) | ![](./examples/example_1_output.jpg) |
+| ![](./examples/example_2_input.mp4) | ![](./examples/example_2_output.mp4) |
+
 
 ## Installation
 The binaries for Asciiator can be found under [releases](https://github.com/nelup20/asciiator/releases). The only requirement is [FFmpeg](https://ffmpeg.org/) which needs to be installed & in your PATH in order to convert videos.
