@@ -94,5 +94,4 @@ python -m src.main "path_to_your_image"
 ```
 
 ## Contributing and issues
-Please create an issue with an applicable label instead of mailing me directly and include any logs if appropriate. Asciiator stores logs in your home directory at `~/.asciiator/logs`\
-For small things like typo's feel free to create a PR directly without an issue. 
+See [CONTRIBUTING.md](CONTRIBUTING.md)
